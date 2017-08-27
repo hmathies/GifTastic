@@ -30,8 +30,8 @@
      var animals = ["pig", "panda", "monkey", "hamster", "crab"];
   //function for generating and disaplying buttons that will hold the giphys
   function createButtons () {
-    
-
+      
+    $('#animalImages').empty();
    for (i = 0; i < animals.length; i++) {
     //this will dynamically generate buttons for each movie
      var b = $("<button>");
@@ -49,6 +49,7 @@
 //this funciton renders the html to display the appropriate content
 
 function displayAnimal() {
+  $('#animalImages').empty();  
 
  var animal = $(this).attr('data-name');
  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
