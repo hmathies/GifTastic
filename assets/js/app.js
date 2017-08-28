@@ -117,20 +117,13 @@ function displayAnimal() {
        }
       })
     });
-      /**
-     * changes from stationary img
-     * to gifs using
-     * split, splice, join
-     * rather than api
-     */
-    $(document).on('click', '.gif', function() {
-        if (this.src.split('_').length === 2) {
-            $(this).attr('src', this.src.split('_').splice(0, 1) + '.gif');
-        } else {
-            var tmp = this.src.split('.');
-            tmp[2] += '_s';
-            $(this).attr('src', tmp.join('.'));
-        }
+      // this onclick will change an image from static to dynamic
+   $(document).on('click', '.gif', function() {
+      if(this.src.split('_').length === 2) {
+        $(this).attr('src', this.src.split('_').splice(0, 1) + '.gif');
+      } else {
+        $(this).attr('src', this.src.replace('.gif', '_s.gif'));
+      }
     });
   });
  
