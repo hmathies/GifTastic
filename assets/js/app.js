@@ -3,7 +3,9 @@
  
   // Initial array of arrays
      var animals = ["pig", "panda", "monkey", "hamster", "crab"];
-      createButtons();
+  //call the create buttons to display the inital buttons
+     createButtons();
+
      // createButtons();
   //function for generating and disaplying buttons that will hold the giphys
   function createButtons () {
@@ -21,11 +23,10 @@
      b.text(animals[i]);
      //add the button to the giphyButtons div
      $('#giphyButtons').append(b);
-     console.log(animals[i]);
    }
   }
 
-// //this funciton renders the html to display the appropriate content
+//this funciton renders the html to display the appropriate content
 
 function displayAnimal() {
 
@@ -40,14 +41,14 @@ function displayAnimal() {
      //creating a div to hold the giphy
      var animalDiv = $("<div class='animal'>");
      //this stores the rating data
-     var rating = response.Rated;
+     var rating = response.rating;
      //create an element to have the rating displayed
      var p = $('<p>').text('Rating: ' + rating);
      //putting the animal giphy below the previous animal
      $('#imageGif').append(animalDiv);
+
      })
 }
-// displayAnimal();
 
  // this function handles events where an add animal button is clicked
  $('#addAnimal').on("click", function(event) {
@@ -58,26 +59,18 @@ function displayAnimal() {
    animals.push(newAnimal);
    console.log("new array: " + animals);
    createButtons();
-    // $('#giphyButtons').append(newAnimal);
-   // $('#imageGif').on("click", ".animals", displayAnimal);
-
  })
-   //call the createButtons function which handles the processing of the animal array
-
-   //add a click event listener to all elements with a class of animals
-
-   //call the create buttons to display the inital buttons
-
-   // Adding click event listen listener to all buttons
+   
+   // Adding click event listener to all buttons
    $("html").on('click', "button", function() {
-
+    
      // Grabbing and storing the data-animal property value from the button
      var animal = $(this).attr("data-name");
 
      // Constructing a queryURL using the animal name
      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
        animal + "&api_key=dc6zaTOxFJmzC&limit=10";
-
+       console.log(queryURL);
      // Performing an AJAX request with the queryURL
      $.ajax({
          url: queryURL,
@@ -85,9 +78,7 @@ function displayAnimal() {
        })
        // After data comes back from the request
        .done(function(response) {
-         console.log(queryURL);
          $("#imageGif").html('');
-
          console.log(response);
          // storing the data from the AJAX request in the results variable
          var results = response.data;
@@ -103,8 +94,13 @@ function displayAnimal() {
 
            // Creating and storing an image tag
            var animalImage = $("<img>");
+           //this adds the class animals to all images
+           animalImage.addClass('gif');
            // Setting the src attribute of the image to a property pulled off the result item
+           
            animalImage.attr("src", results[i].images.fixed_height.url);
+           animalImage.attr("src", results[i].images.original_still.url);
+
 
            // Appending the paragraph and image tag to the animalDiv
            animalDiv.append(p);
@@ -112,9 +108,26 @@ function displayAnimal() {
 
            // appending the animalDiv to the HTML page in the div
            $("#imageGif").append(animalDiv);
+         
+         var animate = animalImage.attr("src", results[i].images.fixed_height.url);
+         var still = animalImage.attr("src", results[i].images.original_still.url);
+         
+         
+         $("html").on("click", ".gif", function(){
+         console.log('an image has been clicked');
+         // var still = animalImage.attr("src", results[i].images.original_still.url);
+         // var animate = animalImage.attr("src", results[i].images.fixed_height.url);
+         console.log(still);
+         if (animate === false) {
+          console.log('animate');
+         } else {
+          
+          console.log('still');
+         }
+         })
 
          }
-       });
+       })
    });
 });
  
