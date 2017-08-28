@@ -1,19 +1,16 @@
  /*----when the page loads*/
   $(document).ready(function() {
- 
-  // Initial array of arrays
+  // Initial array of animals
      var animals = ["pig", "panda", "monkey", "hamster", "crab"];
   //call the create buttons to display the inital buttons
      createButtons();
-
-     // createButtons();
   //function for generating and disaplying buttons that will hold the giphys
   function createButtons () {
+    //this doesn't recreate the same buttons when a new button is added to the array
     $('#giphyButtons').html('');
-      //this below is not clearing the images after click another
-    // $('#giphyButtons').empty();
-   for (i = 0; i < animals.length; i++) {
     //this will dynamically generate buttons for each animal
+   for (i = 0; i < animals.length; i++) {
+     //adding a variable for button
      var b = $("<button>");
      //adding a class of animals to the button
      b.addClass('animals');
@@ -26,35 +23,33 @@
    }
   }
 
-//this funciton renders the html to display the appropriate content
-
+//this funciton renders the html to display the giphys
 function displayAnimal() {
 
- var animal = $(this).attr('data-name');
- var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-       animal + "&api_key=dc6zaTOxFJmzC&limit=10";
-// Performing an AJAX request with the queryURL
-   $.ajax({
-       url: queryURL,
-       method: "GET"
-     }).done(function(response){
-     //creating a div to hold the giphy
-     var animalDiv = $("<div class='animal'>");
-     //this stores the rating data
-     var rating = response.rating;
-     //create an element to have the rating displayed
-     var p = $('<p>').text('Rating: ' + rating);
-     //putting the animal giphy below the previous animal
-     $('#imageGif').append(animalDiv);
-
-     })
-}
+   var animal = $(this).attr('data-name');
+   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+         animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+    // Performing an AJAX request with the queryURL
+       $.ajax({
+           url: queryURL,
+           method: "GET"
+         }).done(function(response){
+         //creating a div to hold the giphy
+         var animalDiv = $("<div class='animal'>");
+         //this stores the rating data
+         var rating = response.rating;
+         //create an element to have the rating displayed
+         var p = $('<p>').text('Rating: ' + rating);
+         //putting the animal giphy below the previous animal
+         $('#imageGif').append(animalDiv);
+         })
+       }
 
  // this function handles events where an add animal button is clicked
  $('#addAnimal').on("click", function(event) {
    event.preventDefault();
    //this line grabs the input from the textbox
-   var newAnimal = $('#animalInput').val().trim();
+   var newAnimal = $('#animalInput').val().trim().toLowerCase();
    //adding animal from the textbox to our array
    animals.push(newAnimal);
    console.log("new array: " + animals);
@@ -85,49 +80,57 @@ function displayAnimal() {
 
          // Looping through each result item
          for (var i = 0; i < results.length; i++) {
+             // Creating and storing a div tag
+             var animalDiv = $("<div>");
 
-           // Creating and storing a div tag
-           var animalDiv = $("<div>");
+             // Creating a paragraph tag with the result item's rating
+             var p = $("<p>").text("Rating: " + results[i].rating);
 
-           // Creating a paragraph tag with the result item's rating
-           var p = $("<p>").text("Rating: " + results[i].rating);
+             // Creating and storing an image tag
+             var animalImage = $("<img>");
+             //this adds the class animals to all images
+             animalImage.addClass('gif',animals[i]);
+             // Setting the src attribute of the image to a property pulled off the result item
+             animalImage.attr("data-state='still'" );
+             // animalImage.attr("src", results[i].images.fixed_height.url);
+             // animalImage.attr("src", results[i].images.original_still.url);
 
-           // Creating and storing an image tag
-           var animalImage = $("<img>");
-           //this adds the class animals to all images
-           animalImage.addClass('gif');
-           // Setting the src attribute of the image to a property pulled off the result item
-           
-           animalImage.attr("src", results[i].images.fixed_height.url);
-           animalImage.attr("src", results[i].images.original_still.url);
+             // Appending the paragraph and image tag to the animalDiv
+             animalDiv.append(p);
+             animalDiv.append(animalImage);
 
-
-           // Appending the paragraph and image tag to the animalDiv
-           animalDiv.append(p);
-           animalDiv.append(animalImage);
-
-           // appending the animalDiv to the HTML page in the div
-           $("#imageGif").append(animalDiv);
-         
+             // appending the animalDiv to the HTML page in the div
+             $("#imageGif").append(animalDiv);
+      
          var animate = animalImage.attr("src", results[i].images.fixed_height.url);
          var still = animalImage.attr("src", results[i].images.original_still.url);
          
-         
-         $("html").on("click", ".gif", function(){
+         $(animalImage).on("click", function(){
          console.log('an image has been clicked');
          // var still = animalImage.attr("src", results[i].images.original_still.url);
          // var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-         console.log(still);
-         if (animate === false) {
-          console.log('animate');
-         } else {
-          
-          console.log('still');
-         }
-         })
-
-         }
-       })
-   });
-});
+         // console.log(animate);
+         // if (animalImage == still) {
+         //  $(animalImage).html(animate);
+         // }
+        })
+       }
+      })
+    });
+      /**
+     * changes from stationary img
+     * to gifs using
+     * split, splice, join
+     * rather than api
+     */
+    $(document).on('click', '.gif', function() {
+        if (this.src.split('_').length === 2) {
+            $(this).attr('src', this.src.split('_').splice(0, 1) + '.gif');
+        } else {
+            var tmp = this.src.split('.');
+            tmp[2] += '_s';
+            $(this).attr('src', tmp.join('.'));
+        }
+    });
+  });
  
