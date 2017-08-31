@@ -1,3 +1,4 @@
+ /*Heather Mathies built August 2017*/
  /*----when the page loads*/
   $(document).ready(function() {
   // Initial array of animals
@@ -92,8 +93,8 @@ function displayAnimal() {
              animalImage.addClass('gif',animals[i]);
              // Setting the src attribute of the image to a property pulled off the result item
              animalImage.attr("data-state='still'" );
-             // animalImage.attr("src", results[i].images.fixed_height.url);
-             // animalImage.attr("src", results[i].images.original_still.url);
+             animalImage.attr("src", results[i].images.fixed_height.url);
+             animalImage.attr("src", results[i].images.original_still.url);
 
              // Appending the paragraph and image tag to the animalDiv
              animalDiv.append(p);
@@ -101,22 +102,27 @@ function displayAnimal() {
 
              // appending the animalDiv to the HTML page in the div
              $("#imageGif").append(animalDiv);
-      
-         var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-         var still = animalImage.attr("src", results[i].images.original_still.url);
-         
-         $(animalImage).on("click", function(){
-         console.log('an image has been clicked');
-         // var still = animalImage.attr("src", results[i].images.original_still.url);
-         // var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-         // console.log(animate);
-         // if (animalImage == still) {
-         //  $(animalImage).html(animate);
-         // }
+
+                }
         })
-       }
-      })
     });
+      
+      // the code below was my first attempt at pausing and animating. Im not sure why it didnt 
+      // work and id like to come back to 
+      //    var animate = animalImage.attr("src", results[i].images.fixed_height.url);
+      //     var still = animalImage.attr("src", results[i].images.original_still.url);
+      //     if (animalImage == still) {
+      //     $(animalImage).html(animate);
+      //    }
+     
+    //      var still = animalImage.attr("src", results[i].images.original_still.url);
+    //      var animate = animalImage.attr("src", results[i].images.fixed_height.url);
+      
+        
+         
+    // $(animalImage).on("click", function(){
+    //       console.log('an image has been clicked');
+    // })
       // this onclick will change an image from static to dynamic
    $(document).on('click', '.gif', function() {
       if(this.src.split('_').length === 2) {
@@ -125,5 +131,6 @@ function displayAnimal() {
         $(this).attr('src', this.src.replace('.gif', '_s.gif'));
       }
     });
+
   });
  
