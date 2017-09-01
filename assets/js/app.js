@@ -36,13 +36,15 @@ function displayAnimal() {
            method: "GET"
          }).done(function(response){
          //creating a div to hold the giphy
-         var animalDiv = $("<div class='animal'>");
+         var animalDiv = $("<div>").addClass("animal");
          //this stores the rating data
          var rating = response.rating;
          //create an element to have the rating displayed
-         var p = $('<p>').text('Rating: ' + rating);
+         var p = $("<p>").text('Rating: ' + rating).addClass("ratings");
          //putting the animal giphy below the previous animal
+
          $('#imageGif').append(animalDiv);
+         
          })
        }
 
@@ -90,11 +92,11 @@ function displayAnimal() {
              // Creating and storing an image tag
              var animalImage = $("<img>");
              //this adds the class animals to all images
-             animalImage.addClass('gif',animals[i]);
+             animalImage.addClass('gif',animals);
              // Setting the src attribute of the image to a property pulled off the result item
              animalImage.attr("data-state='still'" );
              animalImage.attr("src", results[i].images.fixed_height.url);
-             animalImage.attr("src", results[i].images.original_still.url);
+             animalImage.attr("src", results[i].images.fixed_height_still.url);
 
              // Appending the paragraph and image tag to the animalDiv
              animalDiv.append(p);
@@ -103,7 +105,7 @@ function displayAnimal() {
              // appending the animalDiv to the HTML page in the div
              $("#imageGif").append(animalDiv);
 
-                }
+            }
         })
     });
       
@@ -117,12 +119,11 @@ function displayAnimal() {
      
     //      var still = animalImage.attr("src", results[i].images.original_still.url);
     //      var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-      
-        
-         
     // $(animalImage).on("click", function(){
     //       console.log('an image has been clicked');
     // })
+
+    
       // this onclick will change an image from static to dynamic
    $(document).on('click', '.gif', function() {
       if(this.src.split('_').length === 2) {
