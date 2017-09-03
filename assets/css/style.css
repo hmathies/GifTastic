@@ -1,5 +1,5 @@
 .gif {
-	width: 400px;
+	width: 300px;
 	display: inline-flex;
     flex-wrap: wrap;
     float: left;
@@ -9,7 +9,6 @@
 .animal {
     padding: 20px;
 	margin: 10px;
-	
 
 	
 }
