@@ -1,5 +1,5 @@
 .gif {
-	width: 200px;
+	width: 400px;
 	display: inline-flex;
     flex-wrap: wrap;
     float: left;
@@ -16,6 +16,23 @@
 
 .ratings, p {
 	width:200px;
-	/*white-space:nowrap;
+	font-style: normal;
+	font-stretch: ultra-expanded;	/*white-space:nowrap;
 	}*/
+}
 
+body {
+	background-color: 
+}
+
+.footer {
+	background-color: navy; 
+}
+
+body {
+  background: lightblue; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, lightblue, violet); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, lightblue, violet); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, lightblue, violet); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, lightblue, violet); /* Standard syntax */
+}
