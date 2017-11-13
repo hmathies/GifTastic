@@ -18,5 +18,5 @@ jQuery, HTML5, Bootstrap, GIPHY API
 3. If you want to see a different animal giphy than what is available, create a new button with giphys by typing the name 
 of the animal and clicking the 'Add an animal' button.  <br>
 4. Add as many animal giphy buttons as you like.  Have fun!<br>
-
+<hr>
 Thanks to the people at Giphy https://developers.giphy.com/.
