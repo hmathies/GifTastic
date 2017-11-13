@@ -2,7 +2,7 @@
 <h3>Description</h3>
 Let's face it- Giphy images make people smile!  This web application allows you to search from the Giphy API (https://developers.giphy.com/) to find any giphy you can think of.  The giphy will be rendered to the page as a still image.  Just click on the image to see it animated.
 
-![Screenshot](cuteTiger.gif)
+![Screenshot](cuteTiger.gif)<br>
 Is that a smile on your face?
 
 <h1>Technologies Used:</h1>
