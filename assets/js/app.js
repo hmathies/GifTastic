@@ -108,20 +108,6 @@ function displayAnimal() {
             }
         })
     });
-      
-      // the code below was my first attempt at pausing and animating. Im not sure why it didnt 
-      // work and id like to come back to 
-      //    var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-      //     var still = animalImage.attr("src", results[i].images.original_still.url);
-      //     if (animalImage == still) {
-      //     $(animalImage).html(animate);
-      //    }
-     
-    //      var still = animalImage.attr("src", results[i].images.original_still.url);
-    //      var animate = animalImage.attr("src", results[i].images.fixed_height.url);
-    // $(animalImage).on("click", function(){
-    //       console.log('an image has been clicked');
-    // })
 
     
       // this onclick will change an image from static to dynamic
