@@ -19,4 +19,4 @@ Is that a smile on your face?
 of the animal and clicking the 'Add an animal' button.  <br>
 4. Add as many animal giphy buttons as you like.  Have fun!<br>
 <hr>
-<h3>Check it out on GitHub Pages <a href="https://hmathies.github.io/GifTastic/">here</a></h3>
+<h3>Check it out on GitHub Pages <a href="https://hmathies.github.io/GifTastic/">here.</a></h3>
